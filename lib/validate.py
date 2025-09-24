@@ -14,7 +14,7 @@ from colorama import init, Fore # For colored terminal output
 # Initialize colorama and enable reset styles after each print
 init(autoreset=True)
 
-print(f"{Fore.BLUE}➡️ Starting: Validating YAML data")
+print(f"{Fore.BLUE}➡️️  Starting: Validating YAML data")
 
 # Configure logging for better error messages and info
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
