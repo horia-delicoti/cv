@@ -1,0 +1,25 @@
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Ignore environment variables
+.env
+
+# Ignore compiled output
+out/*
+
+# Do not ignore specific files in out directory
+!out/Horia_Delicoti_CV.pdf
+
+# Ignore all hidden system files
+.DS_Store
+Thumbs.db
