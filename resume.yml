@@ -1,0 +1,128 @@
+basics:
+  name: Horia Delicoti
+  email: horia.delicoti@gmail.com
+  location:
+    address: East Sussex, UK
+  website: https://horia.delicoti.com/
+  linkedin: https://linkedin.com/in/horia-delicoti
+  linkedin_short: linkedin.com/in/horia-delicoti
+  github: https://github.com/horia-delicoti
+  github_short: github.com/horia-delicoti
+
+personal_statement: |
+  DevOps Engineer with 7+ years of experience in automation, Linux, and system reliability.
+  I specialise in automating processes, improving infrastructure efficiency, and implementing
+  security policies. Certified in Terraform and System Administration, I seek to learn, grow,
+  and stay updated with the latest DevOps tools and best practices.
+
+skills:
+  - name: CI/CD Tools
+    keywords: [Jenkins, GitHub Actions, Git]
+  - name: Monitoring
+    keywords: [Grafana, Prometheus, AppDynamics, Splunk]
+  - name: Containerization
+    keywords: [Docker, KVM, Kubernetes]
+  - name: Cloud
+    keywords: [AWS, GCP]
+  - name: Operating System
+    keywords: [Linux, CentOS, Ubuntu]
+  - name: Languages
+    keywords: [Python, Bash, Ruby]
+  - name: Infrastructure as Code
+    keywords: [Ansible, Puppet, Terraform]
+  - name: Networking
+    keywords: [DNS, SSL, HTTPS, Firewall, TCP/IP]
+
+work:
+  - name: Info Grup
+    position: Linux System Administrator
+    url: https://www.infogrup.ro/
+    startDate: 2024-01
+    endDate: Present
+    type: Part-time
+    highlights:
+      - Developed and launched website using HTML, CSS, and WordPress
+      - Created a plan for the website downtime, ensuring 99.9% uptime through performance monitoring (response time,error rates),
+        alerts, regular maintenance schedules, failover strategies, load balancing configurations, and redun-dancy measures to minimize
+        disruptions and increase reliability
+      - Improved the website design and reduced response time by 30%, improving user experience and performance through
+        caching, image compression, and CDN
+      - Optimized page load speed by over 40%, reducing load time through caching and optimizing CSS and HTML file sizes
+  - name: Deloitte Digital
+    position: DevOps Engineer
+    url: https://www.deloitte.com/uk/en/about.html
+    startDate: 2021-11
+    endDate: 2023-08
+    highlights:
+      - Automated performance report generation by integrating Python scripts into the Jenkins pipeline, reducing processing time by 99%
+        while improving data accuracy and reliability
+      - Deployed, configured, and maintained 1 monitoring and alerting system, ensuring 24/7 system visibility. Set up 50+ custom alerts for performance
+        metrics, reducing incident response time by 40%
+      - Identified and resolved 100+ technical issues by utilizing logs, performance metrics, and diagnostic tools, reducing recurring problems by 60%.
+        These improvements increased system uptime from 99.5% to 99.9%
+      - Used Ansible to automate deployment, security configurations, maintenance tasks, and server administration
+  - name: Bitdefender
+    position: Infrastructure Engineer
+    url: https://www.bitdefender.com/en-gb/
+    startDate: 2019-11
+    endDate: 2021-11
+    highlights:
+      - Optimized Puppet server performance by improving server configuration, resource allocation, and JVM settings, reducing response time from 3 minutes
+        to 30 seconds while efficiently managing 2,000 production servers
+      - Managed server administration tasks, including user/group management, permissions, and firewall configuration
+      - Analyzing logs and optimizing resource consumption to ensure system efficiency and security
+      - Developed automation tools script to improve system deployments
+      - Monitoring systems health to address software or server issues on bare metal and VM machines
+      - Maintained system uptime of 99.9% by generating, configuring, and installing SSL certificates for 15+ designated systems, ensuring seamless
+        installation through Puppet across all monitored environments
+  - name: Balena LTD
+    position: QA Engineer
+    url: https://www.balena.io/
+    startDate: 2016-07
+    endDate: 2019-11
+    highlights:
+      - Designed a testing framework for evaluating boot methods, onboard peripherals, and OS features of SBCs, using Docker to spawn parallel test
+        environments. This enabled simultaneous board testing, reducing iteration times by 70\%, accelerating the overall testing process, and improving
+        product reliability
+      - Created and documented test cases to ensure product compliance with specifications, improving test coverage and getting accurate validation
+        of product features
+
+education:
+  - institution: University Politehnica of Bucharest
+    url: https://upb.ro/en/
+    area: Computer Science and Engineering Programme
+    startDate: 2009-09
+    endDate: 2013-07
+    highlights:
+      - Major: Automatic Control and Computer Faculty
+  - institution: Dunarea
+    url: http://www.dunarea-info.ro/
+    area: Information Technology and Mathematics
+    startDate: 2005-09
+    endDate: 2009-06
+    highlights:
+      - Achievements: Physics Olympiad (Stefan Procopiu)
+
+certificates:
+  - name: "LFCS: Linux Foundation Certified Systems Administrator"
+    url: "https://www.credly.com/badges/10bb36b8-e9e7-4f7a-b9fb-5bef9b15e231/public_url"
+    issuer: "The Linux Foundation"
+    issuer_url: "https://www.credly.com/organizations/the-linux-foundation/badges"
+    date: "2024-07-01"
+  - name: "Terraform Associate (003)"
+    url: "https://www.credly.com/badges/7a8e13c2-2c9c-4ef2-a5e5-0c38e58f84ea/linked_in_profile"
+    issuer: "HashiCorp"
+    issuer_url: "https://www.credly.com/organizations/hashicorp/badges"
+    date: "2023-06-01"
+
+projects:
+  - name: Home Infrastructure
+    url: https://github.com/horia-delicoti/infrastructure
+    github: github.com/horia-delicoti/infrastructure
+    description: "A collection of Ansible playbooks to automate and optimize home infrastructure, including server configuration, monitoring, alerting, Docker,
+                  and more. All playbooks run within Docker containers, ensuring consistent and isolated environments with a focus on efficiency and
+                  scalability"
+  - name: Deploy Web Application in AWS using Terraform
+    url: https://github.com/horia-delicoti/get-started_aws
+    github: github.com/horia-delicoti/get-started_aws
+    description: "A set of Terraform scripts to provision, modify, and destroy AWS infrastructure, enabling efficient management of cloud resources"
