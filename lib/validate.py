@@ -1,12 +1,11 @@
 """
-validate.py - Validate resume.yaml agains schema.json
+validate.py - Validate resume.yml agains schema.json
 """
 
 import argparse # For parsing command-line options
 import sys # For command line arguments
 import json # For loading JSON schema
 import yaml # For loading YAML resume
-import logging # For logging errors and info
 from jsonschema import validate, ValidationError # For validating JSON against schema
 from pathlib import Path # For file path operations
 from colorama import init, Fore # For colored terminal output
@@ -15,10 +14,6 @@ from colorama import init, Fore # For colored terminal output
 init(autoreset=True)
 
 print(f"{Fore.BLUE}➡️️  Starting: Validating YAML data")
-
-# Configure logging for better error messages and info
-logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
-logger = logging.getLogger(__name__)
 
 def load_yaml(yaml_path: Path) -> dict:
     """
@@ -32,7 +27,6 @@ def load_yaml(yaml_path: Path) -> dict:
         with yaml_path.open("r", encoding="utf-8") as file:
             return yaml.safe_load(file)
     except Exception as e:
-        logger.error(f"Failed to load YAML file {yaml_path}: {e}")
         raise
 
 def load_json(json_path: Path) -> dict:
@@ -47,7 +41,6 @@ def load_json(json_path: Path) -> dict:
         with json_path.open("r", encoding="utf-8") as file:
             return json.load(file)
     except Exception as e:
-        logger.error(f"Failed to load JSON file {json_path}: {e}")
         raise
 
 def validate_yaml_against_schema(yaml_data: dict, schema: dict) -> None:
@@ -61,9 +54,8 @@ def validate_yaml_against_schema(yaml_data: dict, schema: dict) -> None:
     """
     try:
         validate(instance=yaml_data, schema=schema)
-        logger.info("YAML data is valid against the JSON schema")
+        print("YAML data is valid against the JSON schema")
     except ValidationError as e:
-        logger.error(f"YAML data validation error: {e}")
         raise
 
 def main():
@@ -77,19 +69,17 @@ def main():
     schema_path = Path(args.schema)
 
     if not resume_path.is_file():
-        logger.error(f"Resume file not found: {resume_path}")
         print(f"{Fore.RED}❌ Error: Resume file not found '{resume_path}'")
         sys.exit(1)
 
     if not schema_path.is_file():
-        logger.error(f"Schema file not found: {schema_path}")
         print(f"{Fore.RED}❌ Error: Schema file not found '{schema_path}'")
         sys.exit(1)
 
     try:
         yaml_data = load_yaml(resume_path)
     except Exception as e:
-        print(f"{Fore.RED}❌ Error loading YAML file: {e}")
+        print(f"{Fore.RED}❌ Error loading YAML file '{resume_path}': {e}")
         sys.exit(1)
     
     try:
@@ -100,7 +90,7 @@ def main():
     
     try:
         validate_yaml_against_schema(yaml_data, schema)
-    except ValidationError:
+    except ValidationError as e:
         print(f"{Fore.RED}❌ YAML data is invalid against the schema: {e}")
         sys.exit(1)
     
