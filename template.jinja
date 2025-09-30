@@ -1,0 +1,307 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=2 cm, % seperation between body and page edge from the top
+    bottom=2 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage[explicit]{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={<<basics.name>>'s CV},
+    pdfauthor={<<basics.name>>},
+    pdfcreator={LaTeX},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage[default, type1]{sourcesanspro} 
+
+% Some settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0.15cm} % set column seperation
+\makeatletter
+\let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
+\patchcmd{\ps@customFooterStyle}{\thepage}{
+    \color{gray}\textit{\small <<basics.name>> - Page \thepage{} of \pageref*{LastPage}}
+}{}{} % replace number by desired string
+\makeatother
+\pagestyle{customFooterStyle}
+
+\titleformat{\section}{
+    % avoid page braking right after the section title
+    \needspace{4\baselineskip}
+    % make the font size of the section title large and color it with the primary color
+    \Large\color{primaryColor}
+}{
+}{
+}{
+    % print bold title, give 0.15 cm space and draw a line of 0.8 pt thickness
+    % from the end of the title to the end of the body
+    \textbf{#1}\hspace{0.15cm}\titlerule[0.8pt]\hspace{-0.1cm}
+}[] % section title formatting
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+% \renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0.2 cm + 0.00001 cm
+    }{
+        0.2 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 9 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{threecolentry}[3][]{
+    \onecolentry
+    \def\thirdColumn{#3}
+    \setcolumnwidth{1 cm, \fill, 4.5 cm}
+    \begin{paracol}{3}
+    {\raggedright #2} \switchcolumn
+}{
+    \switchcolumn \raggedleft \thirdColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for three column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\color{primaryColor}\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
+
+    %%%%%%%%%%
+    % Profile
+    %%%%%%%%%%
+    \begin{header}
+        \fontsize{30 pt}{30 pt}
+        \textbf{<<basics.name>>}
+
+        \vspace{0.3 cm}
+
+    \normalsize
+    \mbox{ {\footnotesize\faMapMarker*}\hspace*{0.13cm}<<basics.location.address>>}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+    \mbox{\hrefWithoutArrow{mailto:<<basics.email>>}{ {\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}<<basics.email>>}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+    \mbox{\hrefWithoutArrow{<<basics.website>>}{ {\footnotesize\faLink}\hspace*{0.13cm}<<basics.website>>}}%
+    \\% force new line 
+    \mbox{\hrefWithoutArrow{<<basics.linkedin>>}{ {\footnotesize\faLinkedinIn}\hspace*{0.13cm}<<basics.linkedin_short>>}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+    \mbox{\hrefWithoutArrow{<<basics.github>>}{ {\footnotesize\faGithub}\hspace*{0.13cm}<<basics.github_short>>}}%
+    \end{header}
+
+    \vspace{0.3 cm - 0.3 cm}
+
+    %%%%%%%%%%%
+    % About me
+    %%%%%%%%%%%
+    \section{About Me}
+
+        \begin{onecolentry}
+            <<personal_statement>>
+        \end{onecolentry}
+    
+    %%%%%%%%%%
+    % Skills
+    %%%%%%%%%%
+    \section{Skills}
+
+        \begin{twocolentry}{
+
+            {% for skill in skills[:4] %}
+            \begin{onecolentry}
+                \textbf{<< skill.name >>:} << skill.keywords | join(", ") >>
+            \end{onecolentry}
+            \vspace{0.2 cm}
+
+            {% endfor %}
+        }
+        {% for skill in skills[4:] %}
+        \begin{onecolentry}
+        \textbf{<< skill.name >>:} << skill.keywords | join(", ") >>
+        \end{onecolentry}
+        \vspace{0.2 cm}
+
+        {% endfor %}
+        \end{twocolentry}
+
+    %%%%%%%%%%%%%
+    % Experience
+    %%%%%%%%%%%%%
+    \section{Experience}
+
+    {% for job in work %}
+    \needspace{6\baselineskip} % to avoid page braking right after the section title or between jobs
+    \begin{tabularx}{\textwidth}{Xr}
+            \textbf{<<job.name>>} | \href{<<job.url>>}{<<job.name>>} {% if job.type %}\textit{(<<job.type>>)}{% endif %} 
+            &
+            \text{ <<job.startDate | format_date>> – <<job.endDate | format_date if job.endDate else 'Present'>> }
+            \vspace{0.1 cm}
+            \newline
+        \end{tabularx}
+
+    \needspace{4\baselineskip} % to avoid page braking right after the job title
+    \begin{highlights}
+        {% for item in job.highlights %}
+            \item << item | latex_escape >>
+        {% endfor %}
+        \end{highlights}
+        \vspace{0.2 cm}
+
+        {% endfor %}
+    
+    %%%%%%%%%%%%%
+    % Education
+    %%%%%%%%%%%%%     
+    \section{Education}
+
+        {% for edu in education %}
+        \begin{tabularx}{\textwidth}{Xr}
+            \textbf{<<edu.area>>} | \href{<<edu.url>>}{<<edu.institution>>}
+            &
+            \text{ <<edu.startDate | format_date>> - <<edu.endDate | format_date>> }
+            \vspace{0.1 cm}
+            \newline    
+        \end{tabularx}
+        \begin{highlights}
+            {% for item in edu.highlights %}
+                {% for key, value in item.items() %}
+                    \item <<key>>: <<value | latex_escape>>
+                {% endfor %}
+            {% endfor %}
+        \end{highlights}
+
+        {% endfor %}
+    
+    %%%%%%%%%%%%%%%
+    % Certificates
+    %%%%%%%%%%%%%%%
+    \section{Certificates}
+
+        {% for cert in certificates %}
+        \begin{tabularx}{\textwidth}{Xr}
+            \textbf{\href{<<cert.url>>}{<<cert.name>>}} | \textit{\href{<<cert.issuer_url>>}{<<cert.issuer>>}}
+            &
+            \text{Issued <<cert.date | format_date>>}
+            \vspace{0.1 cm}
+            \newline
+        \end{tabularx}
+        
+        {% endfor %}
+
+    %%%%%%%%%%%
+    % Projects 
+    %%%%%%%%%%%
+    \section{Projects}
+
+       {% for proj in projects %}
+        	\textbf{<<proj.name>>} | \href{<<proj.url>>}{\nolinkurl{<<proj.github>>}}
+            \begin{highlights}
+                \item <<proj.description | latex_escape>> 
+            \end{highlights}
+        \vspace{0.1 cm}
+       {% endfor %}
+
+\end{document}
