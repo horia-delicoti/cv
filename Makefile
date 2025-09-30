@@ -1,12 +1,12 @@
 ################################################################################
-# Makefile for the CV generation process 	                                   #
+# 					Makefile for the CV generation process 	                   				 #
 ################################################################################
-# The following Makefile wraps all commands required to generate the CV from   #
-# the source data and template, as well as helpers and prerequisites.          #
-# To get started run `make`, or `make [command]` to run a specific command.    #
+# This Makefile has all commands required to generate my CV from the source    #
+# the source data and template, as well as validation and prerequisites.       #
+# To get started, run `make`, or `make [command]` to run a specific command.   #
 ################################################################################
-# Full source on GitHub: https://github.com/horia-delicoti/cv  			 	   #
-# Licensed under the MIT License, ⓒ Horia Delicoti 2025 <horia.delicoti.com>  #
+# Full source on GitHub: https://github.com/horia-delicoti/cv  			 	     		 #
+# Licensed under the MIT License, ⓒ Horia Delicoti 2025 <horia.delicoti.com>   #
 ################################################################################
 
 # Define variables for common paths
@@ -16,9 +16,11 @@ PYTHON_VENV := $(VENV)/bin/python3
 PIP := $(PYTHON_VENV) -m pip
 REQUIREMENTS := lib/requirements.txt
 SCHEMA := schema.json
-RESUME := resume.yaml
+RESUME := resume.yml
+TEMPLATE := template.jinja
+OUTPUT_TEX := resume.tex
 
-# show help if no target is given
+# Show help if no target is given
 .PHONY: default
 default: 
 	@echo "No targets provided. Run 'make help' for available targets."
@@ -49,20 +51,24 @@ help:
 	@echo "    make validate  # validate resume against schema"
 
 .PHONY: venv
-venv: # create new VENV for Python if it doesn't exist
+venv: # Create new VENV for Python if it doesn't exist
 	@echo "🐍 Creating virtual environment for Python..."
 	$(PYTHON) -m venv $(VENV)
 	$(PIP) install --upgrade pip setuptools
 
 .PHONY: install 
-install: # install required Python packages
+install: venv # Install required Python packages
 	@echo "📦 Installing required Python dependencies..."
 	$(PYTHON_VENV) -m pip install -r $(REQUIREMENTS)
 
 .PHONY: validate 
-validate: # validate the YAML resume against the JSON schema
+validate: # Validate the YAML resume against the JSON schema
 	$(PYTHON_VENV) lib/validate.py --resume $(RESUME) --schema $(SCHEMA)
 
+.PHONY: generate
+generate: # Generate a LaTeX resume from a resume YAML file and a Jinja2 template
+	$(PYTHON_VENV) lib/generate.py --resume $(RESUME) --template $(TEMPLATE) --output ${OUTPUT_TEX}
+
 .PHONY: all
-all: # install deps, validate, generate, compile, and clean up
-	venv install validate
+all: # Install deps, validate, generate, compile, and clean up
+	install validate generate
