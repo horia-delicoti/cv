@@ -282,7 +282,7 @@
 
         {% for cert in certificates %}
         \begin{tabularx}{\textwidth}{Xr}
-            \textbf{\href{<<cert.url>>}{<<cert.name>>}} | \textit{\href{<<cert.issuer_url>>}{<<cert.issuer>>}}
+            \textbf{\href{<<cert.url>>}{<<cert.name>>}} | \href{<<cert.issuer_url>>}{<<cert.issuer>>}
             &
             \text{Issued <<cert.date | format_date>>}
             \vspace{0.1 cm}
