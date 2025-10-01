@@ -5,7 +5,6 @@ generate.py - Generate a LaTeX resume from a YAML file and a Jinja2 template
 import argparse # For parsing command-line options
 import re
 import logging # For logging error and info
-import os
 import sys
 import yaml
 from pathlib import Path # For file path operations
@@ -131,18 +130,21 @@ def main():
     )
     parser.add_argument(
         "--resume",
+        required=True,
         type=Path,
-        help="Path to the YAML resume file (default: resume.yml)"
+        help="Path to the YAML resume file"
     )
     parser.add_argument(
         "--template",
+        required=True,
         type=Path,
-        help="Path to the Jinja2 template file (default: template.jinja)"
+        help="Path to the Jinja2 template file"
     )
     parser.add_argument(
         "--output",
+        required=True,
         type=Path,
-        help="Path to the output LaTeX file (default: resume.tex)"
+        help="Path to the output LaTeX file"
     )
 
     args = parser.parse_args()
