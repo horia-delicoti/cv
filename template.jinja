@@ -112,11 +112,7 @@
 
 
 \newenvironment{onecolentry}{
-    \begin{adjustwidth}{
-        0.2 cm + 0.00001 cm
-    }{
-        0.2 cm + 0.00001 cm
-    }
+    \begin{adjustwidth}{0cm}{0cm}
 }{
     \end{adjustwidth}
 } % new environment for one column entries
@@ -234,74 +230,78 @@
 
     {% for job in work %}
     \needspace{6\baselineskip} % to avoid page braking right after the section title or between jobs
-    \begin{tabularx}{\textwidth}{Xr}
-            \textbf{<<job.name>>} | \href{<<job.url>>}{<<job.name>>} {% if job.type %}\textit{(<<job.type>>)}{% endif %} 
-            &
-            \text{ <<job.startDate | format_date>> – <<job.endDate | format_date if job.endDate else 'Present'>> }
-            \vspace{0.1 cm}
-            \newline
-        \end{tabularx}
+    \begin{tabularx}{\textwidth}{@{}Xr@{}} % @{} removes left/right padding
+        \textbf{<<job.position>>} | \href{<<job.url>>}{<<job.name>>} {% if job.type %}\textit{(<<job.type>>)}{% endif %}
+        &
+        \text{ <<job.startDate | format_date>> – <<job.endDate | format_date if job.endDate else 'Present'>> }
+        \vspace{0.1 cm}
+        \newline
+    \end{tabularx}
 
     \needspace{4\baselineskip} % to avoid page braking right after the job title
     \begin{highlights}
-        {% for item in job.highlights %}
-            \item << item | latex_escape >>
-        {% endfor %}
-        \end{highlights}
-        \vspace{0.2 cm}
+    {% for item in job.highlights %}
+        \item <<item | latex_escape>>
+    {% endfor %}
+    \end{highlights}
+    \vspace{0.2 cm}
 
-        {% endfor %}
+    {% endfor %}
     
     %%%%%%%%%%%%%
     % Education
     %%%%%%%%%%%%%     
     \section{Education}
 
-        {% for edu in education %}
-        \begin{tabularx}{\textwidth}{Xr}
-            \textbf{<<edu.area>>} | \href{<<edu.url>>}{<<edu.institution>>}
-            &
-            \text{ <<edu.startDate | format_date>> - <<edu.endDate | format_date>> }
-            \vspace{0.1 cm}
-            \newline    
-        \end{tabularx}
-        \begin{highlights}
-            {% for item in edu.highlights %}
-                {% for key, value in item.items() %}
-                    \item <<key>>: <<value | latex_escape>>
-                {% endfor %}
-            {% endfor %}
-        \end{highlights}
+    {% for edu in education %}
+    \begin{tabularx}{\textwidth}{@{}Xr@{}} % @{} removes left/right padding
+        \textbf{<<edu.area>>} | \href{<<edu.url>>}{<<edu.institution>>}
+        &
+        \text{ <<edu.startDate | format_date>> - <<edu.endDate | format_date>> }
+        \vspace{0.1 cm}
+        \newline
+    \end{tabularx}
+    \begin{highlights}
+    {% for item in edu.highlights %}
+    {% for key, value in item.items() %}
+        \item <<key>>: <<value | latex_escape>>
+    {% endfor %}
+    {% endfor %}
+    \end{highlights}
 
-        {% endfor %}
+    {% endfor %}
     
     %%%%%%%%%%%%%%%
     % Certificates
     %%%%%%%%%%%%%%%
     \section{Certificates}
 
-        {% for cert in certificates %}
-        \begin{tabularx}{\textwidth}{Xr}
-            \textbf{\href{<<cert.url>>}{<<cert.name>>}} | \href{<<cert.issuer_url>>}{<<cert.issuer>>}
-            &
-            \text{Issued <<cert.date | format_date>>}
-            \vspace{0.1 cm}
-            \newline
-        \end{tabularx}
+    {% for cert in certificates %}
+    \begin{tabularx}{\textwidth}{@{}Xr@{}} % @{} removes left/right padding
+        \textbf{\href{<<cert.url>>}{<<cert.name>>}} | \href{<<cert.issuer_url>>}{<<cert.issuer>>}
+        &
+        \text{Issued <<cert.date | format_date>>}
+        \vspace{0.1 cm}
+        \newline
+    \end{tabularx}
         
-        {% endfor %}
+    {% endfor %}
 
     %%%%%%%%%%%
     % Projects 
     %%%%%%%%%%%
     \section{Projects}
 
-       {% for proj in projects %}
-        	\textbf{<<proj.name>>} | \href{<<proj.url>>}{\nolinkurl{<<proj.github>>}}
-            \begin{highlights}
-                \item <<proj.description | latex_escape>> 
-            \end{highlights}
-        \vspace{0.1 cm}
-       {% endfor %}
+    {% for proj in projects %}
+    \begin{tabularx}{\textwidth}{@{}Xr@{}} % @{} removes left/right padding
+        \textbf{<<proj.name>>}
+        &
+        \mbox{\hrefWithoutArrow{<<proj.url | latex_escape>>}{ {\footnotesize\faGithub}\hspace*{0.13cm}<<proj.github | latex_escape>>}}
+    \end{tabularx}
+    \begin{highlights}
+        \item <<proj.description | latex_escape>>
+    \end{highlights}
+    \vspace{0.1 cm}
 
+    {% endfor %}
 \end{document}
