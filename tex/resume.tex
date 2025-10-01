@@ -1,0 +1,402 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=2 cm, % seperation between body and page edge from the top
+    bottom=2 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage[explicit]{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Horia Delicoti's CV},
+    pdfauthor={Horia Delicoti},
+    pdfcreator={LaTeX},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage[default, type1]{sourcesanspro} 
+
+% Some settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0.15cm} % set column seperation
+\makeatletter
+\let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
+\patchcmd{\ps@customFooterStyle}{\thepage}{
+    \color{gray}\textit{\small Horia Delicoti - Page \thepage{} of \pageref*{LastPage}}
+}{}{} % replace number by desired string
+\makeatother
+\pagestyle{customFooterStyle}
+
+\titleformat{\section}{
+    % avoid page braking right after the section title
+    \needspace{4\baselineskip}
+    % make the font size of the section title large and color it with the primary color
+    \Large\color{primaryColor}
+}{
+}{
+}{
+    % print bold title, give 0.15 cm space and draw a line of 0.8 pt thickness
+    % from the end of the title to the end of the body
+    \textbf{#1}\hspace{0.15cm}\titlerule[0.8pt]\hspace{-0.1cm}
+}[] % section title formatting
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+% \renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{0cm}{0cm}
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 9 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{threecolentry}[3][]{
+    \onecolentry
+    \def\thirdColumn{#3}
+    \setcolumnwidth{1 cm, \fill, 4.5 cm}
+    \begin{paracol}{3}
+    {\raggedright #2} \switchcolumn
+}{
+    \switchcolumn \raggedleft \thirdColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for three column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\color{primaryColor}\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
+
+    %%%%%%%%%%
+    % Profile
+    %%%%%%%%%%
+    \begin{header}
+        \fontsize{30 pt}{30 pt}
+        \textbf{Horia Delicoti}
+
+        \vspace{0.3 cm}
+
+    \normalsize
+    \mbox{ {\footnotesize\faMapMarker*}\hspace*{0.13cm}East Sussex, UK}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+    \mbox{\hrefWithoutArrow{mailto:horia.delicoti@gmail.com}{ {\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}horia.delicoti@gmail.com}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+    \mbox{\hrefWithoutArrow{https://horia.delicoti.com/}{ {\footnotesize\faLink}\hspace*{0.13cm}https://horia.delicoti.com/}}%
+    \\% force new line 
+    \mbox{\hrefWithoutArrow{https://linkedin.com/in/horia-delicoti}{ {\footnotesize\faLinkedinIn}\hspace*{0.13cm}linkedin.com/in/horia-delicoti}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+    \mbox{\hrefWithoutArrow{https://github.com/horia-delicoti}{ {\footnotesize\faGithub}\hspace*{0.13cm}github.com/horia-delicoti}}%
+    \end{header}
+
+    \vspace{0.3 cm - 0.3 cm}
+
+    %%%%%%%%%%%
+    % About me
+    %%%%%%%%%%%
+    \section{About Me}
+
+        \begin{onecolentry}
+            DevOps Engineer with 7+ years of experience in automation, Linux, and system reliability.
+I specialise in automating processes, improving infrastructure efficiency, and implementing
+security policies. Certified in Terraform and System Administration, I seek to learn, grow,
+and stay updated with the latest DevOps tools and best practices.
+
+        \end{onecolentry}
+
+    %%%%%%%%%%
+    % Skills
+    %%%%%%%%%%
+    \section{Skills}
+
+        \begin{twocolentry}{
+
+            \begin{onecolentry}
+                \textbf{CI/CD Tools:} Jenkins, GitHub Actions, Git
+            \end{onecolentry}
+            \vspace{0.2 cm}
+
+            \begin{onecolentry}
+                \textbf{Monitoring:} Grafana, Prometheus, AppDynamics, Splunk
+            \end{onecolentry}
+            \vspace{0.2 cm}
+
+            \begin{onecolentry}
+                \textbf{Containerization:} Docker, KVM, Kubernetes
+            \end{onecolentry}
+            \vspace{0.2 cm}
+
+            \begin{onecolentry}
+                \textbf{Cloud:} AWS, GCP
+            \end{onecolentry}
+            \vspace{0.2 cm}
+
+        }
+        \begin{onecolentry}
+        \textbf{Operating System:} Linux, CentOS, Ubuntu
+        \end{onecolentry}
+        \vspace{0.2 cm}
+
+        \begin{onecolentry}
+        \textbf{Languages:} Python, Bash, Ruby
+        \end{onecolentry}
+        \vspace{0.2 cm}
+
+        \begin{onecolentry}
+        \textbf{Infrastructure as Code:} Ansible, Puppet, Terraform
+        \end{onecolentry}
+        \vspace{0.2 cm}
+
+        \begin{onecolentry}
+        \textbf{Networking:} DNS, SSL, HTTPS, Firewall, TCP/IP
+        \end{onecolentry}
+        \vspace{0.2 cm}
+
+        \end{twocolentry}
+
+    %%%%%%%%%%%%%
+    % Experience
+    %%%%%%%%%%%%%
+    \section{Experience}
+
+    \needspace{6\baselineskip} % to avoid page braking right after the section title or between jobs
+    \begin{tabularx}{\textwidth}{@{}Xr@{}} % @{} removes left/right padding
+        \textbf{Linux System Administrator} | \href{https://www.infogrup.ro/}{Info Grup}         &
+        \text{ Jan 2024 – Present }
+        \vspace{0.1 cm}
+        \newline
+    \end{tabularx}
+
+    \needspace{4\baselineskip} % to avoid page braking right after the job title
+    \begin{highlights}
+        \item Developed and launched website using HTML, CSS, and WordPress
+        \item Created a plan for the website downtime, ensuring 99.9\% uptime through performance monitoring (response time, error rates), alerts, regular maintenance schedules, failover strategies, load balancing configurations, and redun-dancy measures to minimize disruptions and increase reliability
+        \item Improved the website design and reduced response time by 30\%, improving user experience and performance through caching, image compression, and CDN
+        \item Optimized page load speed by over 40\%, reducing load time through caching and optimizing CSS and HTML file sizes
+    \end{highlights}
+    \vspace{0.2 cm}
+
+    \needspace{6\baselineskip} % to avoid page braking right after the section title or between jobs
+    \begin{tabularx}{\textwidth}{@{}Xr@{}} % @{} removes left/right padding
+        \textbf{DevOps Engineer} | \href{https://www.deloitte.com/uk/en/about.html}{Deloitte Digital}         &
+        \text{ Nov 2021 – Aug 2023 }
+        \vspace{0.1 cm}
+        \newline
+    \end{tabularx}
+
+    \needspace{4\baselineskip} % to avoid page braking right after the job title
+    \begin{highlights}
+        \item Automated performance report generation by integrating Python scripts into the Jenkins pipeline, reducing processing time by 99\% while improving data accuracy and reliability
+        \item Deployed, configured, and maintained 1 monitoring and alerting system, ensuring 24/7 system visibility. Set up 50+ custom alerts for performance metrics, reducing incident response time by 40\%
+        \item Identified and resolved 100+ technical issues by utilizing logs, performance metrics, and diagnostic tools, reducing recurring problems by 60\%. These improvements increased system uptime from 99.5\% to 99.9\%
+        \item Used Ansible to automate deployment, security configurations, maintenance tasks, and server administration
+    \end{highlights}
+    \vspace{0.2 cm}
+
+    \needspace{6\baselineskip} % to avoid page braking right after the section title or between jobs
+    \begin{tabularx}{\textwidth}{@{}Xr@{}} % @{} removes left/right padding
+        \textbf{Infrastructure Engineer} | \href{https://www.bitdefender.com/en-gb/}{Bitdefender}         &
+        \text{ Nov 2019 – Nov 2021 }
+        \vspace{0.1 cm}
+        \newline
+    \end{tabularx}
+
+    \needspace{4\baselineskip} % to avoid page braking right after the job title
+    \begin{highlights}
+        \item Optimized Puppet server performance by improving server configuration, resource allocation, and JVM settings, reducing response time from 3 minutes to 30 seconds while efficiently managing 2,000 production servers
+        \item Managed server administration tasks, including user/group management, permissions, and firewall configuration
+        \item Analyzing logs and optimizing resource consumption to ensure system efficiency and security
+        \item Developed automation tools script to improve system deployments
+        \item Monitoring systems health to address software or server issues on bare metal and VM machines
+        \item Maintained system uptime of 99.9\% by generating, configuring, and installing SSL certificates for 15+ designated systems, ensuring seamless installation through Puppet across all monitored environments
+    \end{highlights}
+    \vspace{0.2 cm}
+
+    \needspace{6\baselineskip} % to avoid page braking right after the section title or between jobs
+    \begin{tabularx}{\textwidth}{@{}Xr@{}} % @{} removes left/right padding
+        \textbf{QA Engineer} | \href{https://www.balena.io/}{Balena LTD}         &
+        \text{ Jul 2016 – Nov 2019 }
+        \vspace{0.1 cm}
+        \newline
+    \end{tabularx}
+
+    \needspace{4\baselineskip} % to avoid page braking right after the job title
+    \begin{highlights}
+        \item Designed a testing framework for evaluating boot methods, onboard peripherals, and OS features of SBCs, using Docker to spawn parallel test environments. This enabled simultaneous board testing, reducing iteration times by 70\textbackslash{}\%, accelerating the overall testing process, and improving product reliability
+        \item Created and documented test cases to ensure product compliance with specifications, improving test coverage and getting accurate validation of product features
+    \end{highlights}
+    \vspace{0.2 cm}
+
+    %%%%%%%%%%%%%
+    % Education
+    %%%%%%%%%%%%%     
+    \section{Education}
+
+    \begin{tabularx}{\textwidth}{@{}Xr@{}} % @{} removes left/right padding
+        \textbf{Computer Science and Engineering Programme} | \href{https://upb.ro/en/}{University Politehnica of Bucharest}
+        &
+        \text{ Sep 2009 - Jul 2013 }
+        \vspace{0.1 cm}
+        \newline
+    \end{tabularx}
+    \begin{highlights}
+        \item Major: Automatic Control and Computer Faculty
+    \end{highlights}
+
+    \begin{tabularx}{\textwidth}{@{}Xr@{}} % @{} removes left/right padding
+        \textbf{Information Technology and Mathematics} | \href{http://www.dunarea-info.ro/}{Dunarea}
+        &
+        \text{ Sep 2005 - Jun 2009 }
+        \vspace{0.1 cm}
+        \newline
+    \end{tabularx}
+    \begin{highlights}
+        \item Achievements: Physics Olympiad (Stefan Procopiu)
+    \end{highlights}
+
+    %%%%%%%%%%%%%%%
+    % Certificates
+    %%%%%%%%%%%%%%%
+    \section{Certificates}
+
+    \begin{tabularx}{\textwidth}{@{}Xr@{}} % @{} removes left/right padding
+        \textbf{\href{https://www.credly.com/badges/10bb36b8-e9e7-4f7a-b9fb-5bef9b15e231/public_url}{LFCS: Linux Foundation Certified Systems Administrator}} | \href{https://www.credly.com/organizations/the-linux-foundation/badges}{The Linux Foundation}
+        &
+        \text{Issued Jul 2024}
+        \vspace{0.1 cm}
+        \newline
+    \end{tabularx}
+        
+    \begin{tabularx}{\textwidth}{@{}Xr@{}} % @{} removes left/right padding
+        \textbf{\href{https://www.credly.com/badges/7a8e13c2-2c9c-4ef2-a5e5-0c38e58f84ea/linked_in_profile}{Terraform Associate (003)}} | \href{https://www.credly.com/organizations/hashicorp/badges}{HashiCorp}
+        &
+        \text{Issued Jun 2023}
+        \vspace{0.1 cm}
+        \newline
+    \end{tabularx}
+        
+    %%%%%%%%%%%
+    % Projects 
+    %%%%%%%%%%%
+    \section{Projects}
+
+    \begin{tabularx}{\textwidth}{@{}Xr@{}} % @{} removes left/right padding
+        \textbf{Home Infrastructure}
+        &
+        \mbox{\hrefWithoutArrow{https://github.com/horia-delicoti/infrastructure}{ {\footnotesize\faGithub}\hspace*{0.13cm}horia-delicoti/infrastructure}}
+    \end{tabularx}
+    \begin{highlights}
+        \item A collection of Ansible playbooks to automate and optimize home infrastructure, including server configuration, monitoring, alerting, Docker, and more. All playbooks run within Docker containers, ensuring consistent and isolated environments with a focus on efficiency and scalability
+    \end{highlights}
+    \vspace{0.1 cm}
+
+    \begin{tabularx}{\textwidth}{@{}Xr@{}} % @{} removes left/right padding
+        \textbf{Deploy Web Application in AWS using Terraform}
+        &
+        \mbox{\hrefWithoutArrow{https://github.com/horia-delicoti/get-started\_aws}{ {\footnotesize\faGithub}\hspace*{0.13cm}horia-delicoti/get-started\_aws}}
+    \end{tabularx}
+    \begin{highlights}
+        \item A set of Terraform scripts to provision, modify, and destroy AWS infrastructure, enabling efficient management of cloud resources
+    \end{highlights}
+    \vspace{0.1 cm}
+
+\end{document}
