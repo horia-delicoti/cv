@@ -16,9 +16,10 @@ PYTHON_VENV := $(VENV)/bin/python3
 PIP := $(PYTHON_VENV) -m pip
 REQUIREMENTS := lib/requirements.txt
 SCHEMA := schema.json
-RESUME := resume.yml
+RESUME_YML := resume.yml
 TEMPLATE := template.jinja
-OUTPUT_TEX := tex/resume.tex
+RESUME_TEX := tex/resume.tex
+OUTPUT_PDF := out/Horia_Delicoti_CV.pdf
 
 # Show help if no target is given
 .PHONY: default
@@ -46,7 +47,7 @@ help:
 	@grep -E '^[a-zA-Z0-9 -]+:.*#' Makefile | sort | while read -r l; do printf "    \033[1;32m$$(echo $$l | cut -f 1 -d':')\033[00m:$$(echo $$l | cut -f 2- -d'#')\n"; done
 	@echo
 	@echo "EXAMPLES"
-	@echo "    make all       # run the default workflow (install + validate)"
+	@echo "    make all       # run the default workflow (install, validate, generate and compile)"
 	@echo "    make install   # install dependencies"
 	@echo "    make validate  # validate resume against schema"
 
@@ -63,12 +64,15 @@ install: venv # Install required Python packages
 
 .PHONY: validate 
 validate: # Validate the YAML resume against the JSON schema
-	$(PYTHON_VENV) lib/validate.py --resume $(RESUME) --schema $(SCHEMA)
+	$(PYTHON_VENV) lib/validate.py --resume $(RESUME_YML) --schema $(SCHEMA)
 
 .PHONY: generate
 generate: # Generate a LaTeX resume from a resume YAML file and a Jinja2 template
-	$(PYTHON_VENV) lib/generate.py --resume $(RESUME) --template $(TEMPLATE) --output ${OUTPUT_TEX}
+	$(PYTHON_VENV) lib/generate.py --resume $(RESUME_YML) --template $(TEMPLATE) --output ${RESUME_TEX}
+
+.PHONY: compile
+compile: # Compile LaTeX file into PDF
+	$(PYTHON_VENV) lib/compile.py --input $(RESUME_TEX) --output $(OUTPUT_PDF)
 
 .PHONY: all
-all: # Install deps, validate, generate, compile, and clean up
-	install validate generate
+all: install validate generate compile # Install deps, validate, generate, compile, and clean up
