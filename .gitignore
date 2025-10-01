@@ -17,9 +17,6 @@ __pycache__/
 # Ignore compiled output
 out/*
 
-# Do not ignore specific files in out directory
-!out/Horia_Delicoti_CV.pdf
-
 # Ignore all hidden system files
 .DS_Store
 Thumbs.db
