@@ -39,10 +39,9 @@ work:
     url: https://www.infogrup.ro/
     startDate: 2024-01
     endDate: Present
-    type: Part-time
     highlights:
       - Developed and launched website using HTML, CSS, and WordPress
-      - Created a plan for the website downtime, ensuring 99.9% uptime through performance monitoring (response time,error rates),
+      - Created a plan for the website downtime, ensuring 99.9% uptime through performance monitoring (response time, error rates),
         alerts, regular maintenance schedules, failover strategies, load balancing configurations, and redun-dancy measures to minimize
         disruptions and increase reliability
       - Improved the website design and reduced response time by 30%, improving user experience and performance through
@@ -118,11 +117,11 @@ certificates:
 projects:
   - name: Home Infrastructure
     url: https://github.com/horia-delicoti/infrastructure
-    github: github.com/horia-delicoti/infrastructure
+    github: horia-delicoti/infrastructure
     description: "A collection of Ansible playbooks to automate and optimize home infrastructure, including server configuration, monitoring, alerting, Docker,
                   and more. All playbooks run within Docker containers, ensuring consistent and isolated environments with a focus on efficiency and
                   scalability"
   - name: Deploy Web Application in AWS using Terraform
     url: https://github.com/horia-delicoti/get-started_aws
-    github: github.com/horia-delicoti/get-started_aws
+    github: horia-delicoti/get-started_aws
     description: "A set of Terraform scripts to provision, modify, and destroy AWS infrastructure, enabling efficient management of cloud resources"
