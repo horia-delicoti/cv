@@ -1,11 +1,11 @@
 ################################################################################
-# 					Makefile for the CV generation process 	                   				 #
+#                   Makefile for the CV generation process                     #
 ################################################################################
 # This Makefile has all commands required to generate my CV from the source    #
 # the source data and template, as well as validation and prerequisites.       #
 # To get started, run `make`, or `make [command]` to run a specific command.   #
 ################################################################################
-# Full source on GitHub: https://github.com/horia-delicoti/cv  			 	     		 #
+# Full source on GitHub: https://github.com/horia-delicoti/cv                  #
 # Licensed under the MIT License, ⓒ Horia Delicoti 2025 <horia.delicoti.com>   #
 ################################################################################
 
@@ -18,7 +18,7 @@ REQUIREMENTS := lib/requirements.txt
 SCHEMA := schema.json
 RESUME := resume.yml
 TEMPLATE := template.jinja
-OUTPUT_TEX := resume.tex
+OUTPUT_TEX := tex/resume.tex
 
 # Show help if no target is given
 .PHONY: default
