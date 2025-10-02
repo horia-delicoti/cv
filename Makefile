@@ -19,7 +19,7 @@ SCHEMA := schema.json
 RESUME_YML := resume.yml
 TEMPLATE := template.jinja
 RESUME_TEX := tex/resume.tex
-OUTPUT_PDF := out/Horia_Delicoti_CV.pdf
+OUTPUT_PDF := out/resume.pdf
 
 # Show help if no target is given
 .PHONY: default
