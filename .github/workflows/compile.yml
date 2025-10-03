@@ -11,9 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🏷️ Get Tag from Triggering Workflow
+      - name: 🏷️ Download Tag Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: tag
+          path: .
+
+      - name: 🏷️ Set Tag Name
         run: |
-          echo "TAG_NAME=${{ github.event.workflow_run.outputs.new_tag }}" >> $GITHUB_ENV
+          TAG_NAME=$(cat tag.txt)
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
 
       - name: 🛎️ Checkout
         uses: actions/checkout@v4
