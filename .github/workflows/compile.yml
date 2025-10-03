@@ -1,9 +1,10 @@
 name: 🔨 Compile
 
 on:
-  push:
-    tags:
-      - '*'   # run when ANY tag is pushed
+  workflow_run:
+    workflows: ["🏷️ Tag"]
+    types:
+      - completed
 
 jobs:
   release:
