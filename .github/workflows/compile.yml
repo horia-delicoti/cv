@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🏷️ Get Tag from Triggering Workflow Tag
+      - name: 🏷️ Get Tag from Triggering Workflow
         run: |
           echo "TAG_NAME=${{ github.event.workflow_run.outputs.new_tag }}" >> $GITHUB_ENV
 
