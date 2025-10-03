@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: 🏷️ Get Tag from Triggering Workflow Tag
+        run: |
+          echo "TAG_NAME=${{ github.event.workflow_run.outputs.new_tag }}" >> $GITHUB_ENV
+
       - name: 🛎️ Checkout
         uses: actions/checkout@v4
 
@@ -36,12 +40,13 @@ jobs:
       - name: 📤 Upload PDF artifact
         uses: actions/upload-artifact@v4
         with:
-          name: resume-pdf
+          name: Horia_Delicoti_CV.pdf
           path: out/Horia_Delicoti_CV.pdf
   
       - name: 🚀 Create Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ env.TAG_NAME }}
           files: out/Horia_Delicoti_CV.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
