@@ -5,11 +5,13 @@ on:
       - main
     paths:
       - 'resume.yml'
+      - 'schema.json'
   pull_request:
     branches:
       - main
     paths:
       - 'resume.yml'
+      - 'schema.json'
 
 jobs:
   validate:
