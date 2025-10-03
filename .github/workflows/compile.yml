@@ -11,19 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🏷️ Download Tag Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: tag
-          path: .
+      - name: 🛎️ Checkout
+        uses: actions/checkout@v4
 
       - name: 🏷️ Set Tag Name
         run: |
-          TAG_NAME=$(cat tag.txt)
+          TAG_NAME=${{ github.event.workflow_run.outputs.new_tag }}
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
-
-      - name: 🛎️ Checkout
-        uses: actions/checkout@v4
 
       - name: 🐍 Set up Python
         uses: actions/setup-python@v5
