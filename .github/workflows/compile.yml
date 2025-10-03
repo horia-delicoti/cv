@@ -14,10 +14,12 @@ jobs:
       - name: 🛎️ Checkout
         uses: actions/checkout@v4
 
-      - name: 🏷️ Set Tag Name
+      - name: 🏷️ Determine Tag Name
         run: |
-          TAG_NAME=${{ github.event.workflow_run.outputs.new_tag }}
+          git fetch --tags
+          TAG_NAME=$(git describe --tags --abbrev=0)
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+          echo "Using tag: $TAG_NAME"
 
       - name: 🐍 Set up Python
         uses: actions/setup-python@v5
@@ -29,6 +31,7 @@ jobs:
 
       - name: 📝 Install LaTeX
         run: |
+          sudo apt-get update
           sudo apt-get install -y texlive-latex-base texlive-latex-recommended texlive-latex-extra
 
       - name: 🧼 Validate resume
