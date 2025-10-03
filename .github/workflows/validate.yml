@@ -20,7 +20,7 @@ jobs:
           python-version: '3.x'
 
       - name: 📦 Install dependencies
-        run: pip install -r lib/requirements.txt
+        run: make install
 
       - name: 🧪 Validate resume.yml against schema.json
         run: make validate
