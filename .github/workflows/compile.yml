@@ -23,9 +23,7 @@ jobs:
         run: make install
 
       - name: 📝 Install LaTeX
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y texlive-full latexmk
+        run: sudo apt-get install -y texlive-full latexmk
     
       - name: 🧼 Validate resume
         run: make validate
