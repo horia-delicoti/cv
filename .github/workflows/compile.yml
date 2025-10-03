@@ -28,8 +28,9 @@ jobs:
         run: make install
 
       - name: 📝 Install LaTeX
-        uses: xu-cheng/latex-action@v2
-    
+        run: |
+          sudo apt-get install -y texlive-latex-base texlive-latex-recommended texlive-latex-extra
+
       - name: 🧼 Validate resume
         run: make validate
 
