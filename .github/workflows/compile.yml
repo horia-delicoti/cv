@@ -32,7 +32,7 @@ jobs:
       - name: 📝 Install LaTeX
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-latex-base texlive-latex-recommended texlive-latex-extra
+          sudo apt-get install -y texlive-full latexmk
 
       - name: 🧼 Validate resume
         run: make validate
