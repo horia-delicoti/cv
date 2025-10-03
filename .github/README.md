@@ -1,8 +1,6 @@
 # Horia Delicoti - CV
 
-_This repo contains the source of my personal CV. A PDF [(LaTeX)][latex] auto-built from [JSON Resume][json_resume] data._
-
----
+This repo contains the source of my personal CV. A PDF [(LaTeX)][latex] auto-built from [JSON Resume][json_resume] data.
 
 ## Motive
 
@@ -18,19 +16,21 @@ A [`LaTeX document`](/tex/resume.tex) is then generate from [`template.jinja`](/
 
 ### Prerequisite
 
-To build/run this project, you need [LaTeX][latex] installed on your machine.
+To build/run this project, you need [LaTeX][latex] and [Python3][python3] installed on your machine.
 
-- **[MacTeX][mactex]** for MacOS
+- **[MacTeX][mactex]** and **[Python3][python3_brew]** for MacOS
 
 ```sh
 brew install --cask mactex
+brew install python3
 ```
 
-- [TeX Live][texlive] for Linux
+- [TeX Live][texlive] and **[Python3][python3]** for Linux
 
 ```sh
 sudo apt update
 sudo apt install texlive-full
+sudo apt install python3 python3-venv python3-pip
 ```
 
 ### Usage - Local
@@ -110,6 +110,8 @@ This project is licensed under the [MIT][mit] License. See the [LICENSE](/LICENS
 [mactex]: https://formulae.brew.sh/cask/mactex
 [texlive]: https://www.tug.org/texlive/
 [mit]: https://opensource.org/licenses/MIT
+[python3]: https://www.python.org/downloads/
+[python3_brew]: https://docs.brew.sh/Homebrew-and-Python
 
 <!-- Coffee -->
 <!--
