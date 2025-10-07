@@ -1,0 +1,107 @@
+version: '3'
+
+vars:
+  PYTHON: python3
+  VENV: .venv
+  PYTHON_VENV: "{{.VENV}}/bin/python3"
+  REQUIREMENTS: lib/requirements.txt
+  SCHEMA: schema.json
+  RESUME_YML: resume.yml
+  TEMPLATE: template.jinja
+  RESUME_TEX: tex/resume.tex
+  OUTPUT_PDF: out/resume.pdf
+
+tasks:
+  default:
+    cmds:
+      - task --list
+    silent: true
+
+  help:
+    desc: Show detailed help in man-page style
+    cmds:
+      - |
+        echo "🧰 CV Taskfile Helper"
+        echo ""
+        echo "NAME"
+        echo "    task - install dependencies, automate building, validating, and compiling the CV"
+        echo ""
+        echo "SYNOPSIS"
+        echo "    task [TASK]"
+        echo ""
+        echo "DESCRIPTION"
+        echo "    Available tasks:"
+        printf "      \033[1;32mall\033[0m         - Full pipeline - install deps, validate, generate, and compile\n"
+        printf "      \033[1;32mvenv\033[0m        - Create Python virtual environment if not exists\n"
+        printf "      \033[1;32minstall\033[0m     - Install required Python packages\n"
+        printf "      \033[1;32minstall-tex\033[0m - Install TeX Live (Linux) or MacTeX (macOS)\n"
+        printf "      \033[1;32mvalidate\033[0m    - Validate the YAML resume against the JSON schema\n"
+        printf "      \033[1;32mgenerate\033[0m    - Generate a LaTeX resume from YAML and Jinja2 template\n"
+        printf "      \033[1;32mcompile\033[0m     - Compile LaTeX file into PDF\n"
+        printf "      \033[1;32m--list\033[0m      - List all available commands\n"
+        printf "      \033[1;32mhelp\033[0m        - Print this help message\n"
+        echo ""
+        echo "EXAMPLES"
+        echo "    task all        # Run the full workflow (install, validate, generate, compile)"
+        echo "    task install    # Install dependencies"
+        echo "    task validate   # Validate resume against schema"
+        echo "    task generate   # Generate LaTeX from template"
+        echo "    task compile    # Compile PDF"
+        echo ""
+    silent: true
+
+  venv:
+    desc: Create Python virtual environment if not exists
+    cmds:
+      - echo "🐍 Creating virtual environment..."
+      - "{{.PYTHON}} -m venv {{.VENV}}"
+      - "{{.PYTHON_VENV}} -m pip install --upgrade pip setuptools"
+    status:
+      - test -d {{.VENV}}
+
+  install:
+    desc: Install required Python packges
+    deps: [venv]
+    cmds:
+      - echo "📦 Installing Python dependencies..."
+      - "{{.PYTHON_VENV}} -m pip install -r {{.REQUIREMENTS}}"
+
+  install-tex:
+    desc: Install TeX Live (Linux) or MacTeX (macOS)
+    cmds:
+      - |
+        OS="$(uname -s)"
+        if [ "$OS" = "Linux" ]; then
+          echo "🧱 Installing TeX Live (Linux)..."
+          sudo apt-get update -y
+          sudo apt-get install -y texlive-full latexmk
+        elif [ "$OS" = "Darwin" ]; then
+          echo "🍎 Installing MacTeX (macOS)..."
+          brew install --cask mactex
+        else
+          echo "⚠️ Unsupported OS: $OS"
+          exit 1
+        fi
+
+  validate:
+    desc: Validate the YAML resume against the JSON schema
+    cmds:
+      - "{{.PYTHON_VENV}} lib/validate.py --resume {{.RESUME_YML}} --schema {{.SCHEMA}}"
+
+  generate:
+    desc: Generate LaTeX resume from YAML and Jinja2 template
+    cmds:
+      - "{{.PYTHON_VENV}} lib/generate.py --resume {{.RESUME_YML}} --template {{.TEMPLATE}} --output {{.RESUME_TEX}}"
+
+  compile:
+    desc: Compile LaTeX file into PDF
+    cmds:
+      - "{{.PYTHON_VENV}} lib/compile.py --input {{.RESUME_TEX}} --output {{.OUTPUT_PDF}}"
+
+  all:
+    desc: Full pipeline - install deps, validate, generate, and compile
+    deps: [install, install-tex]
+    cmds:
+      - task: validate
+      - task: generate
+      - task: compile
