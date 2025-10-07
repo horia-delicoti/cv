@@ -26,6 +26,9 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: ⚙️ Install Task
+        run: sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
+
       - name: 📦 Install dependencies
         run: task install
 
