@@ -27,18 +27,16 @@ jobs:
           python-version: '3.x'
 
       - name: 📦 Install dependencies
-        run: make install
+        run: task install
 
       - name: 📝 Install LaTeX
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y texlive-full latexmk
+        run: task install-tex
 
       - name: 🧼 Validate resume
-        run: make validate
+        run: task validate
 
       - name: 📝 Generate & Compile resume
-        run: make generate compile
+        run: task generate compile -v OUTPUT_PDF=out/Horia_Delicoti_CV.pdf
 
       - name: 📤 Upload PDF artifact
         uses: actions/upload-artifact@v4

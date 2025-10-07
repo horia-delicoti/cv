@@ -26,7 +26,7 @@ jobs:
           python-version: '3.x'
 
       - name: 📦 Install dependencies
-        run: make install
+        run: task install
 
       - name: 🧪 Validate resume.yml against schema.json
-        run: make validate
+        run: task validate
