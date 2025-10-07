@@ -1,56 +1,74 @@
-# Horia Delicoti - CV
+![Build](https://github.com/horia-delicoti/cv/actions/workflows/compile.yml/badge.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Made with LaTeX](https://img.shields.io/badge/Made%20with-LaTeX-blue.svg)
+
+# 🧑‍💻 Horia Delicoti - CV
 
 This repo contains the source of my personal CV. A PDF [(LaTeX)][latex] auto-built from [JSON Resume][json_resume] data.
 
-## Motive
+## 💡 Motive
 
-Instead of writting my resume in Word, PDF, or LaTeX, it is easy to write it as structured JSON data. Then use scripts to convert it
+Instead of writing my resume manually in Word, PDF, or LaTeX, I maintain it as a structured JSON data then use scripts to automatically generate a LaTeX and PDF version.
 automatically into PDF.
 
-## About
+## 🧠 About
 
-The resume content is defined in [`resume.yml`](/resume.yml) following the [jsonresume.org][json_resume] standard, and validated against [`schema.json`](/schema.json) using [`validate.py`](/lib/validate.py).
-A [`LaTeX document`](/tex/resume.tex) is then generate from [`template.jinja`](/template.jinja) using [`generate.py`](/lib/generate.py) and [`compiled`](/lib/compile.py) to PDF using [pdflatex][pdflatex]. The generated PDF is located at [`out/resume.pdf`](/out/).
+The resume content is defined in [`resume.yml`](/resume.yml) following the [jsonresume.org][json_resume] standard, and validated
+against [`schema.json`](/schema.json) using [`validate.py`](/lib/validate.py).
+A [`LaTeX document`](/tex/resume.tex) is then generated from [`template.jinja`](/template.jinja) using [`generate.py`](/lib/generate.py)
+and [`compiled`](/lib/compile.py) to PDF using [pdflatex][pdflatex]. The final PDF is automatically generated in [`out/resume.pdf`](/out/).
+The entire process: from `YAML` → `LaTeX` → `PDF` is fully automated via the [`Taskfile`](/Taskfile.yml).
 
-## Getting Started
+## 🚀 Getting Started
 
-### Prerequisite
+### ⚙️ Prerequisite
 
-To build/run this project, you need [LaTeX][latex] and [Python3][python3] installed on your machine.
+To build or run this project, you need **[Task][taskfile]** and **[Python3][python3]** installed on your machine.
+[Latex][latex] will be installed by the [Taskfile](/Taskfile.yml) _(using [MacTeX][mactex] on macOS. [TeX Live][texlive] on Linux)_
 
-- **[MacTeX][mactex]** and **[Python3][python3_brew]** for MacOS
+- **macOS**
 
 ```sh
-brew install --cask mactex
+brew install go-task
 brew install python3
+
 ```
 
-- [TeX Live][texlive] and **[Python3][python3]** for Linux
+- **Linux**
 
 ```sh
 sudo apt update
-sudo apt install texlive-full
-sudo apt install python3 python3-venv python3-pip
+sudo apt install python3 python3-venv python3-pip curl -y
+sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
 ```
 
-### Usage - Local
+### 🧪 Usage - Local
 
-Check the [`Makefile`](/Makefile) for all available commands. Or run `make all` inside the project directory to install all dependencies, [`validate`](/lib/validate.py) content, [`generate`](/lib/generate.py) the LaTeX file and [`compile`](/lib/compile.py) it to PDF.
+```sh
+# Clone the repo
+git clone https://github.com/horia-delicoti/cv.git && cd cv
 
-1. Clone the repository
-2. Update resume content in [`resume.yml`](/resume.yml)
-3. Run `make all` to install dependencies, validate, generate and compile the resume to PDF.
+# Modify resume data
+vim resume.yml
+
+# Check all available commands
+task help
+
+# Or simply run everything (install deps, validate, generate, compile).
+task all -v OUTPUT_PDF=out/<your_name>_CV.pdf # Optionally specify the output PDF file name using `OUTPUT_PDF` variable
+```
 
 <details>
   <summary>Commands</summary>
 
-- `make help`     - Show help message
-- `make all`      - Install dependencies, validate, generate and compile
-- `make install`  - Install dependencies in a virtual environment
-- `make validate` - Validate content
-- `make generate` - Generate LaTeX file
-- `make compile`  - Compile PDF from LaTeX file
-- `make clean`    - Remove generated files
+- `task help`        - Show help message
+- `task all`         - Install dependencies, validate, generate and compile
+- `task venv`        - Create a Python virtual environment if it doesn't exist
+- `task install`     - Install required Python dependencies
+- `task install-tex` - Install TeX Live (Linux) or MacTeX (macOS)
+- `task validate`    - Validate YAML content against the JSON schema
+- `task generate`    - Generate LaTeX file from YAML and Jinja2 template
+- `task compile`     - Compile PDF from LaTeX file
 
 </details>
 
@@ -63,28 +81,33 @@ flowchart LR
     C -->|compile.py + pdflatex| D[📄 out/resume.pdf]
 ```
 
-### Customize
+### 🎨 Customize
 
 You can modify the resume by editing the [`resume.yml`](/resume.yml) file, following the [JSON Resume standard](https://jsonresume.org/).
 You can also customize the LaTeX template located at [`template.jinja`](/template.jinja) to change the layout and design of the resume.
 All the scripts are located in the [`/lib`](/lib) directory.
-They are triggered by the [`Makefile`](Makefile).
+They are triggered by the [`Taskfile`](/Taskfile.yml)
 
-## Contributing
+### 📸 Screenshot
+
+<h3 align="center">PDF 📄</h3>
+<p align="center"><img src="./screenshots/screenshot-pdf.png" width="500" alt="Generated PDF preview preview"/</p>
+
+## 🤝 Contributing
 
 No need to contribute or raise issues. Just fork the repo and make the changes you need for your own CV.
 
-## Attributions
+## 🙌 Attributions
 
 ### Contributors
 
 ![Contributors](https://readme-contribs.as93.net/contributors/horia-delicoti/cv)
 
-## Acknowledgements
+## 🫡 Acknowledgements
 
 Thanks to [Lissy93 CV](https://github.com/Lissy93/cv) for the inspiration and [dwmkerr makefile-help](https://github.com/dwmkerr/makefile-help) for the Makefile template.
 
-## Resources
+## 📚 Resources
 
 - [PyLaTeX](https://jeltef.github.io/PyLaTeX/current/)
 - [RenderCV](https://github.com/rendercv/rendercv)
@@ -92,7 +115,7 @@ Thanks to [Lissy93 CV](https://github.com/Lissy93/cv) for the inspiration and [d
 - [PyYAML](https://pypi.org/project/PyYAML/)
 - [Coloroma](https://github.com/tartley/colorama)
 
-## License
+## ⚖️ License
 
 This project is licensed under the [MIT][mit] License. See the [LICENSE](/LICENSE) file for details.
 
@@ -111,7 +134,7 @@ This project is licensed under the [MIT][mit] License. See the [LICENSE](/LICENS
 [texlive]: https://www.tug.org/texlive/
 [mit]: https://opensource.org/licenses/MIT
 [python3]: https://www.python.org/downloads/
-[python3_brew]: https://docs.brew.sh/Homebrew-and-Python
+[taskfile]: https://taskfile.dev/docs/installation
 
 <!-- Coffee -->
 <!--
