@@ -1,6 +1,8 @@
-![Build](https://github.com/horia-delicoti/cv/actions/workflows/compile.yml/badge.svg)
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
-![Made with LaTeX](https://img.shields.io/badge/Made%20with-LaTeX-blue.svg)
+[![Build](https://github.com/horia-delicoti/cv/actions/workflows/compile.yml/badge.svg)][workflow_compile]
+[![Validate](https://github.com/horia-delicoti/cv/actions/workflows/validate.yml/badge.svg)][workflow_validate]
+[![Tag](https://github.com/horia-delicoti/cv/actions/workflows/tag.yml/badge.svg)][workflow_tag]
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)][mit]
+[![Made with LaTeX](https://img.shields.io/badge/Made%20with-LaTeX-blue.svg)][latex]
 
 # 🧑‍💻 Horia Delicoti - CV
 
@@ -135,6 +137,9 @@ This project is licensed under the [MIT][mit] License. See the [LICENSE](/LICENS
 [mit]: https://opensource.org/licenses/MIT
 [python3]: https://www.python.org/downloads/
 [taskfile]: https://taskfile.dev/docs/installation
+[workflow_validate]: https://github.com/horia-delicoti/cv/actions/workflows/validate.yml
+[workflow_compile]: https://github.com/horia-delicoti/cv/actions/workflows/compile.yml
+[workflow_tag]: https://github.com/horia-delicoti/cv/actions/workflows/tag.yml
 
 <!-- Coffee -->
 <!--
