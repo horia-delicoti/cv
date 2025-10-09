@@ -110,11 +110,33 @@ Thanks to [Lissy93 CV](https://github.com/Lissy93/cv) for the inspiration and [d
 
 ## 📚 Resources
 
-- [PyLaTeX](https://jeltef.github.io/PyLaTeX/current/)
-- [RenderCV](https://github.com/rendercv/rendercv)
-- [JSON](https://www.json.org/json-en.html)
-- [PyYAML](https://pypi.org/project/PyYAML/)
-- [Coloroma](https://github.com/tartley/colorama)
+### 🧩 Data & Templates
+
+- [JSON](https://www.json.org/json-en.html) - A lightweight data interchange format that is easy for humans to read and write, and easy for machines to parse and generate.
+- [JSON Resume](https://jsonresume.org/) - The open source initiative to create a JSON-based standard for resumes.
+- [jsonschema](https://pypi.org/project/jsonschema/) - An implementation of JSON Schema for Python.
+- [PyYAML](https://pypi.org/project/PyYAML/) - A YAML parser and emitter for Python.
+- [Jinja2](https://jinja.palletsprojects.com/en/3.1.x/) - A modern and designer-friendly templating language for Python.
+
+### 🐍 Python Libraries for LaTeX & PDF Generation
+
+- [PyLaTeX](https://jeltef.github.io/PyLaTeX/current/) - A Python library for creating and compiling LaTeX files or snippets.
+- [pdflatex](https://pypi.org/project/pdflatex/) - A simple wrapper around the pdflatex command to compile LaTeX files from Python.
+- [RenderCV](https://github.com/rendercv/rendercv) - A tool to generate a PDF resume from JSON Resume schema using LaTeX templates.
+- [Coloroma](https://github.com/tartley/colorama) - A simple cross-platform colored terminal text in Python.
+
+### 🧮 LaTeX & TeX Distributions
+
+- [LaTeX](https://www.latex-project.org/) - A high-quality typesetting system; it includes features designed for the production of technical and scientific documentation.
+- [TeX Live](https://www.tug.org/texlive/) - A comprehensive TeX system that includes all the major TeX-related programs, macro packages, and fonts that are free software.
+- [MacTeX](https://tug.org/mactex/) - A TeX distribution for macOS that includes TeX Live, a full set of TeX-related programs, macro packages, and fonts.
+
+### ⚙️ Build & Utility Tools
+
+- [Task](https://taskfile.dev/) - A simple task runner / build tool that aims to be simpler and easier to use than Make.
+- [PNG Egg](https://www.pngegg.com/) - A free online tool to convert SVG to PNG and get transparent background images.
+- [Mermaid](https://mermaid-js.github.io/mermaid/#/) - A JavaScript-based diagramming and charting tool that renders Markdown-inspired text definitions to create and modify diagrams dynamically.
+- [Shields.io](https://shields.io/) - A service that provides a simple way to create consistent and customizable badges for open source projects.
 
 ## ⚖️ License
 
@@ -124,7 +146,7 @@ This project is licensed under the [MIT][mit] License. See the [LICENSE](/LICENS
 <p  align="center">
   <i>© <a href="https://horia.delicoti.com">Horia Delicoti</a> 2025</i><br>
   <i>Licensed under <a href="https://www.tldrlegal.com/license/mit-license">MIT</a></i><br>
-  <a href="https://github.com/horia-delicoti"><img src="https://i.ibb.co/4KtpYxb/octocat-clean-mini.png" /></a><br>
+  <a href="https://github.com/horia-delicoti"><img src="./images/octocat_spiderman.png" width="100" /></a><br>
   <sup>Happy exploring 🙂</sup>
 </p>
 
