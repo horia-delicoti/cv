@@ -11,7 +11,6 @@ This repo contains the source of my personal CV. A PDF [(LaTeX)][latex] auto-bui
 ## 💡 Motive
 
 Instead of writing my resume manually in Word, PDF, or LaTeX, I maintain it as a structured JSON data then use scripts to automatically generate a LaTeX and PDF version.
-automatically into PDF.
 
 ## 🧠 About
 
