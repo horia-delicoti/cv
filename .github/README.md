@@ -24,8 +24,8 @@ The entire process: from `YAML` → `LaTeX` → `PDF` is fully automated via the
 
 ### ⚙️ Prerequisite
 
-To build or run this project, you need **[Task][taskfile]** and **[Python3][python3]** installed on your machine.
-[Latex][latex] will be installed by the [Taskfile](/Taskfile.yml) _(using [MacTeX][mactex] on macOS. [TeX Live][texlive] on Linux)_
+To run this project, you need **[Task][taskfile]** and **[Python3][python3]** installed on your machine.
+[Latex][latex] will be installed by the [Taskfile](/Taskfile.yml) _([MacTeX][mactex] on macOS and [TeX Live][texlive] on Linux)_
 
 - **🍎 macOS**
 
@@ -90,7 +90,7 @@ They are triggered by the [`Taskfile`](/Taskfile.yml)
 
 ### 📸 Screenshot
 
-<h3 align="center">PDF 📄</h3>
+<h3 align="center">📄 PDF</h3>
 <p align="center"><img src="./screenshots/screenshot-pdf.png" width="350" alt="Generated PDF preview preview"/</p>
 
 ## 🤝 Contributing
