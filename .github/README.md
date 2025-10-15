@@ -4,9 +4,15 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)][mit]
 [![Made with LaTeX](https://img.shields.io/badge/Made%20with-LaTeX-blue.svg)][latex]
 
-# 🧑‍💻 Horia Delicoti - CV
-
-This repo contains the source of my personal CV. A PDF [(LaTeX)][latex] auto-built from [JSON Resume][json_resume] data.
+<h1 align="center">🧑‍💻 Horia Delicoti - CV</h1>
+<p align="center">
+<a href="https://github.com/horia-delicoti/cv"><img src="./images/cv-logo.png" width="48"/></a><br>
+<i>This repo contains the source for my personal CV</i>
+<br />
+<i>A PDF <a href="https://www.latex-project.org/">(LaTeX)</a> auto-built from <a href="https://jsonresume.org/">JSON Resume</a> data</i>
+<br />
+<b> 📄 <a href="https://github.com/horia-delicoti/cv/releases/latest/download/Horia_Delicoti_CV.pdf"><code>Horia-Delicoti-CV.pdf</code></a></b> <br />
+</p>
 
 ## 💡 Motive
 
@@ -161,12 +167,12 @@ This project is licensed under the [MIT][mit] License. See the [LICENSE](/LICENS
 [workflow_compile]: https://github.com/horia-delicoti/cv/actions/workflows/compile.yml
 [workflow_tag]: https://github.com/horia-delicoti/cv/actions/workflows/tag.yml
 
-<!-- Coffee -->
+<!-- Ambition Brew -->
 <!--
-  ( (
-   ) )
-........
-|      |]
-\      /
- `----'
+   ( (
+    ) )
+  ........
+  | CV ☕ |]
+  \      /
+   `----'
 -->
