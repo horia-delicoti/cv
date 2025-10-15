@@ -31,7 +31,7 @@ The entire process: from `YAML` → `LaTeX` → `PDF` is fully automated via the
 ### ⚙️ Prerequisite
 
 To run this project, you need **[Task][taskfile]** and **[Python3][python3]** installed on your machine.
-[Latex][latex] will be installed by the [Taskfile](/Taskfile.yml) _([MacTeX][mactex] on macOS and [TeX Live][texlive] on Linux)_
+[Latex][latex] will be installed by the [Taskfile](/Taskfile.yml#L69) _([MacTeX][mactex] on macOS and [TeX Live][texlive] on Linux)_
 
 - **🍎 macOS**
 
