@@ -97,7 +97,7 @@ They are triggered by the [`Taskfile`](/Taskfile.yml)
 ### 📸 Screenshot
 
 <h3 align="center">📄 PDF</h3>
-<p align="center"><img src="./screenshots/screenshot-pdf.png" width="350" alt="Generated PDF preview preview"/</p>
+<p align="center"><img src="./screenshots/screenshot-pdf.png" width="350" alt="Generated PDF preview"/></p>
 
 ## 🤝 Contributing
 
