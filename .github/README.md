@@ -142,6 +142,7 @@ Thanks to [Lissy93 CV](https://github.com/Lissy93/cv) for the inspiration and [d
 - [PNG Egg](https://www.pngegg.com/) - A free online tool to convert SVG to PNG and get transparent background images.
 - [Mermaid](https://mermaid-js.github.io/mermaid/#/) - A JavaScript-based diagramming and charting tool that renders Markdown-inspired text definitions to create and modify diagrams dynamically.
 - [Shields.io](https://shields.io/) - A service that provides a simple way to create consistent and customizable badges for open source projects.
+- [Overleaf](https://www.overleaf.com/) - A cloud-based collaborative LaTeX editor for journals, academic papers, CVs and resumes, and more.
 
 ## ⚖️ License
 
